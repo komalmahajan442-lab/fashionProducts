@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+:root{
+  background-color: #e9ebef;
+}
+
+body{
+  background-color: #e9ebef;
+  margin:0;
+  padding: 0;
+  overflow-x: hidden;
+}
