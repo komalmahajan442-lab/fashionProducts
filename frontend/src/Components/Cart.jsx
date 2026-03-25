@@ -7,7 +7,6 @@ function Cart() {
   const [cart, setCart] = useState([]);
   const navigate = useNavigate();
 
- 
   const getCart = async () => {
     try {
       const res = await axios.get('https://fashionproducts.onrender.com/Cart', {
@@ -17,18 +16,16 @@ function Cart() {
       });
 
       setCart(res.data.items);
-
     } catch (err) {
       console.log(err);
     }
   };
 
-
   const handleRemoveFromCart = async (productId) => {
     try {
       const res = await axios.post(
         'https://fashionproducts.onrender.com/remove',
-        { productId }, 
+        { productId },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -37,14 +34,13 @@ function Cart() {
       );
 
       toast.success(res.data.message);
-      getCart(); 
+      getCart();
 
     } catch (err) {
       toast.error("Error removing item");
     }
   };
 
-  
   const updateQuantity = async (productId, type) => {
     try {
       const res = await axios.put(
@@ -57,7 +53,7 @@ function Cart() {
         }
       );
 
-      setCart(res.data.cart.items); 
+      setCart(res.data.cart.items);
 
     } catch (err) {
       toast.error("Error updating quantity");
@@ -69,47 +65,54 @@ function Cart() {
   }, []);
 
   return (
-    <div className="p-15 bg-gray-100 min-h-screen ">
+    <div className="bg-gray-100 min-h-screen px-4 sm:px-8 md:px-16 py-10">
 
-      <h1 className="text-3xl font-bold mb-8 p-10">Shopping Cart</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold mb-8 text-center md:text-left my-10">
+        Shopping Cart
+      </h1>
 
-      <div className="grid grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-       
-        <div className="col-span-2 flex flex-col gap-5">
+        {/* Cart Items */}
+        <div className="lg:col-span-2 flex flex-col gap-5">
 
           {cart.length === 0 ? (
-            <p>Your cart is empty</p>
+            <p className="text-center">Your cart is empty</p>
           ) : (
             cart.map((item) => {
-
               const productId = item.productId?._id || item.productId;
 
               return (
-                <div key={item._id} className="bg-white p-5 rounded-xl flex gap-5 shadow">
+                <div
+                  key={item._id}
+                  className="bg-white p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row gap-4 shadow"
+                >
 
+                  {/* Image */}
                   <img
                     src={item.productId.image}
-                    className="w-28 h-28 object-contain"
+                    className="w-full sm:w-28 h-40 sm:h-28 object-contain"
+                    alt=""
                   />
 
+                  {/* Content */}
                   <div className="flex flex-col justify-between w-full">
 
                     <div>
-                      <h1 className="font-bold text-lg">
+                      <h1 className="font-bold text-sm sm:text-lg">
                         {item.productId.title}
                       </h1>
 
                       <p className="text-gray-500 text-sm">Size: XS</p>
 
-                      <p className="text-xl font-semibold mt-2">
+                      <p className="text-lg sm:text-xl font-semibold mt-2">
                         ${item.productId.price}
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-4 mt-3">
+                    {/* Controls */}
+                    <div className="flex flex-wrap items-center gap-3 mt-3">
 
-                     
                       <button
                         className="px-3 py-1 bg-gray-200 rounded"
                         onClick={() => updateQuantity(productId, "dec")}
@@ -119,7 +122,6 @@ function Cart() {
 
                       <span>{item.quantity}</span>
 
-                      
                       <button
                         className="px-3 py-1 bg-gray-200 rounded"
                         onClick={() => updateQuantity(productId, "inc")}
@@ -127,9 +129,8 @@ function Cart() {
                         +
                       </button>
 
-                      
                       <button
-                        className="ml-5 text-red-500"
+                        className="text-red-500 ml-2"
                         onClick={() => handleRemoveFromCart(productId)}
                       >
                         Remove
@@ -145,10 +146,12 @@ function Cart() {
 
         </div>
 
-       
-        <div className="bg-white p-6 rounded-xl shadow h-fit">
+        {/* Order Summary */}
+        <div className="bg-white p-5 sm:p-6 rounded-xl shadow h-fit">
 
-          <h1 className="text-xl font-bold mb-5">Order Summary</h1>
+          <h1 className="text-lg sm:text-xl font-bold mb-5">
+            Order Summary
+          </h1>
 
           <div className="flex justify-between mb-2">
             <p>Subtotal</p>
@@ -181,7 +184,7 @@ function Cart() {
             </p>
           </div>
 
-          <button className="w-full bg-black text-white py-2 mt-5 rounded-xl">
+          <button className="w-full bg-black text-white py-2 mt-5 rounded-xl hover:bg-gray-800 transition">
             Checkout
           </button>
 

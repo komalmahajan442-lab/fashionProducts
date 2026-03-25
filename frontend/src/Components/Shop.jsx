@@ -9,20 +9,31 @@ const {products}=useContext(MyContext);
 
     return (
       <>
-      <div className='py-20 bg-[#e9ebef]'>
-        <h1 className='font-bold text-4xl px-10 py-5'>Shop All</h1>
+      <div className='pt-20 pb-10 bg-[#e9ebef] min-h-screen'>
+        <h1 className='font-bold text-2xl sm:text-3xl md:text-4xl px-4 sm-px-8 md:px-10 py-5'>Shop All</h1>
 
-        <div className='grid grid-cols-2 gap-15 p-5  justify-center my-8 px-20'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 sm:px-8 md:px-20'>
             {products.map((element,index)=>(
-                <div onClick={()=>navigate(`/shop/${element._id}`)} key={index} className='bg-white rounded-2xl transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2'>
+                <div onClick={()=>navigate(`/shop/${element._id}`)} key={index} className='bg-white 
+              rounded-2xl 
+              cursor-pointer
+              transition 
+              duration-300 
+              ease-in-out 
+              hover:shadow-xl 
+              hover:-translate-y-2'>
                     <div>
 
-                <img className='border-b border-gray-500 w-full p-10 h-[25rem] ' src={element.image} />
+                <img className=' w-full 
+                h-48 sm:h-56 md:h-64 
+                object-contain 
+                border-b 
+                p-5 ' src={element.image} />
                 </div>
                 <div className='p-3 flex flex-col gap-2 font-bold'>
-                <p className='text-gray-400'>{element.category}</p>
-                <h1 >{element.title}</h1>
-                <p>${element.price}</p>
+                <p className='text-gray-400 text-sm'>{element.category}</p>
+                <h1 className='font-semibold text-sm sm:text-base line-clamp-2'>{element.title}</h1>
+                <p className='font-bold text-lg'>${element.price}</p>
                 </div>
                     </div>
             ))}

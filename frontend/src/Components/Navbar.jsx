@@ -7,21 +7,21 @@ function Navbar() {
     const {isLoggedIn,logout}=useContext(MyContext);
     return (
         <>
-        <div className='bg-white px-5 py-4 fixed w-full'>
-<nav className='flex justify-between'>
+        <div className='bg-white px-5 py-4 fixed w-full z-50 shadow'>
+<nav className='flex justify-between items-center'>
     <div>
  <h1 className='font-bold text-2xl'>LUXE</h1>
 
     </div>
 
-    <div className='flex gap-3'>
+    <div className='hidden md:flex gap-5'>
         <Link to='/' className='text-xl text-gray-600'>Home</Link>
         <Link to='/shop' className='text-xl text-gray-600'>Shop</Link>
     </div>
    
    
 
-        <div className='flex gap-4'>
+        <div className='flex gap-3 items-center'>
           {isLoggedIn ? (
             <>
               <button onClick={() => navigate('/cart')}>Cart</button>
