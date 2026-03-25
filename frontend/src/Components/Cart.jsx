@@ -10,7 +10,7 @@ function Cart() {
  
   const getCart = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/Cart', {
+      const res = await axios.get('https://fashionproducts.onrender.com/Cart', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -27,7 +27,7 @@ function Cart() {
   const handleRemoveFromCart = async (productId) => {
     try {
       const res = await axios.post(
-        'http://localhost:8080/remove',
+        'https://fashionproducts.onrender.com/remove',
         { productId }, 
         {
           headers: {
@@ -48,7 +48,7 @@ function Cart() {
   const updateQuantity = async (productId, type) => {
     try {
       const res = await axios.put(
-        'http://localhost:8080/update-cart',
+        'https://fashionproducts.onrender.com/update-cart',
         { productId, type },
         {
           headers: {
@@ -69,9 +69,9 @@ function Cart() {
   }, []);
 
   return (
-    <div className="p-10 bg-gray-100 min-h-screen">
+    <div className="p-15 bg-gray-100 min-h-screen ">
 
-      <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
+      <h1 className="text-3xl font-bold mb-8 p-10">Shopping Cart</h1>
 
       <div className="grid grid-cols-3 gap-10">
 

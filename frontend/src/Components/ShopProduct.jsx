@@ -28,7 +28,7 @@ const product = products.find(
   const handleAddToCart = async () => {
     try {
       const res = await axios.post(
-        'http://localhost:8080/add-to-cart',
+        'https://fashionproducts.onrender.com/add-to-cart',
         { productId: product._id }, 
         {
           headers: {

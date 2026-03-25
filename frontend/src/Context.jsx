@@ -24,7 +24,7 @@ export const MyContext=createContext();
 
    useEffect(() => {
   const fetchProducts = async () => {
-    const res = await axios.get("http://localhost:8080/products");
+    const res = await axios.get("https://fashionproducts.onrender.com/products");
     setProducts(res.data);
   };
 

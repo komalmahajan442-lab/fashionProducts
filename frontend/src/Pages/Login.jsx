@@ -18,7 +18,7 @@ const [password,setPassword]=useState("");
 
   const handleSignup=async()=>{
     try{
-const res=await axios.post('http://localhost:8080/signup',{name,email,password});
+const res=await axios.post('https://fashionproducts.onrender.com/signup',{name,email,password});
 login(res.data.token);
 
 toast.success(res.data.message);
@@ -36,7 +36,7 @@ navigate('/shop');
 
   const handleLogin=async()=>{
     try{
-const res=await axios.post('http://localhost:8080/login',{email,password});
+const res=await axios.post('https://fashionproducts.onrender.com/login',{email,password});
 login(res.data.token);
 toast.success(res.data.message);
 navigate('/shop');
