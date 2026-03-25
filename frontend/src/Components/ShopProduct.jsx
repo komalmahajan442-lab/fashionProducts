@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../Context';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 function ShopProduct() {
   const { products } = useContext(MyContext);
   const { id } = useParams();
-
+const navigate=useNavigate();
  
 if(!id){
     console.log('Invalid id');
@@ -26,13 +26,21 @@ const product = products.find(
 
   console.log(product);
   const handleAddToCart = async () => {
+
+    const token = localStorage.getItem("token");
+
+    if(!token){
+        toast.error("Please login first");
+        navigate("/login");
+    return;
+    }
     try {
       const res = await axios.post(
         'https://fashionproducts.onrender.com/add-to-cart',
         { productId: product._id }, 
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${token}`
           }
         }
       );
