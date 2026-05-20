@@ -73,7 +73,7 @@ function Cart() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-        {/* Cart Items */}
+       
         <div className="lg:col-span-2 flex flex-col gap-5">
 
           {cart.length === 0 ? (
@@ -88,14 +88,14 @@ function Cart() {
                   className="bg-white p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row gap-4 shadow"
                 >
 
-                  {/* Image */}
+                 
                   <img
                     src={item.productId.image}
                     className="w-full sm:w-28 h-40 sm:h-28 object-contain"
                     alt=""
                   />
 
-                  {/* Content */}
+                
                   <div className="flex flex-col justify-between w-full">
 
                     <div>
@@ -110,7 +110,7 @@ function Cart() {
                       </p>
                     </div>
 
-                    {/* Controls */}
+                   
                     <div className="flex flex-wrap items-center gap-3 mt-3">
 
                       <button
@@ -146,7 +146,7 @@ function Cart() {
 
         </div>
 
-        {/* Order Summary */}
+        
         <div className="bg-white p-5 sm:p-6 rounded-xl shadow h-fit">
 
           <h1 className="text-lg sm:text-xl font-bold mb-5">
